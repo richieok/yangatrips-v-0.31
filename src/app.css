@@ -4,6 +4,7 @@
     --row1: 70px;
     --row2: 40px;
     --navBarHeight: 5em;
+    --nav-height-mobile: 110px;
     --defaultTextColor: black;
 }
 *,

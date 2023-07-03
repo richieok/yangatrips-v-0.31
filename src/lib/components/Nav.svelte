@@ -10,6 +10,7 @@
     let x = 0
     let width;
     let regAbout = /^\/about(?:\/[0-9a-zA-Z]+)?$/
+    let regTours = /^\/tours(?:\/[0-9a-zA-Z]+)?$/
     
     afterNavigate(()=>{
         updateMenuList()
@@ -24,6 +25,9 @@
         }
         width = a2.parentNode.clientWidth
         x = a2.parentNode.offsetLeft
+        let b = a2.parentNode.getBoundingClientRect()
+        // console.log(b);
+        // console.log(`offsetLeft: ${x}. width: ${width}`);
     }
     const ulResize = ()=>{
         console.log('ul resize');
@@ -35,14 +39,18 @@
 </script>
 
 <nav>
-    <!-- <div class="logo">
-        <img src={logo} alt="logo" />
-    </div> -->
+    <div class="logo">
+        <a href="/">
+            <img src="/yanga-img.JPG" alt="logo" />
+        </a>
+    </div>
     <ul on:resize={ulResize}>
         <li>
-            <div class="sweeper" style="left: {x}px;width: {width}px"></div>
+            <!-- <div class="sweeper" style="left: {x - 150}px;width: {width}px"></div> -->
+            <!-- <div class="sweeper"></div> -->
             <a class:active={$page.url.pathname ==='/'} href="/">Home</a>
         </li>
+        <li><a class:active={regTours.test($page.url.pathname)} href="/tours">Tours</a></li>
         <li><a class:active={regAbout.test($page.url.pathname)} href="/about">About Us</a></li>
         <!-- <li><a class:active={/^\/tours(?:\/[0-9a-zA-Z]+)?$/.test('/tours')} href="/tours">Tours</a></li> -->
     </ul>
@@ -54,10 +62,29 @@
 <style>
     nav {
         display: flex;
+        flex-direction: column;
         position: fixed;
         z-index: 3;
+        padding: 5px;
+        height: var(--nav-height-mobile);
         background-color: white;
         width: 100%;
+    }
+    .logo {
+        width: 150px;
+        height: 100%;
+        margin: 0 auto;
+        /* overflow: hidden; */
+    }
+    .logo img {
+        width: 100%;
+        /* height: 100%; */
+        object-fit: cover;
+    }
+    .logo a {
+        display: grid;
+        height: 100%;
+        place-items: center;
     }
 
     ul {
@@ -75,9 +102,9 @@
 
     ul a {
         text-decoration: none;
-        padding: 1em;
+        padding: .5em;
     }
-    a, a:link, a:visited {
+    ul a, a:link, a:visited {
         color: var(--defaultTextColor);
     }
     .sweeper {
@@ -89,11 +116,16 @@
         transition: left 1s, width 1s;
     }
     a.active {
-        font-weight: bolder;
+        font-weight: bold;
+        background-color: goldenrod;
     }
     @media (min-width: 510px) {
         nav {
-            
+            flex-direction: row;
+            height: var(--navBarHeight);
+        }
+        .logo {
+            margin: 0;
         }
         ul li {
             

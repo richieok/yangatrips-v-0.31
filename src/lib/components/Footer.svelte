@@ -45,4 +45,9 @@
         width: 50px;
         height: 50px;
     }
+    @media (max-width: 400px ){
+        .footer {
+            flex-direction: column;
+        }
+    }
 </style>

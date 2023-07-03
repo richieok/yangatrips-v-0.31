@@ -5,33 +5,34 @@
     import WhatsappWidget from "../lib/components/WhatsappWidget.svelte";
     export let data = []
     let {agents} = data
-    $:if(agents){
-        console.log(agents);
-    }
+    // $:if(agents){
+    //     console.log(agents);
+    // }
 </script>
 
-<Nav></Nav>
-<main>
-    <slot></slot>
-    <WhatsappWidget {agents}/>
-</main>
-<Footer/>
+<div>
+    <Nav></Nav>
+    <main>
+        <slot></slot>
+        <WhatsappWidget {agents}/>
+    </main>
+    <Footer/>
+</div>
 
 <style>
-    /* main {
-        height: 100vh;
-        padding-top: calc(var(--row1) + var(--row2));
-        background-color: black;
+    div {
+        background-image: linear-gradient(to right, hsl(0, 6%, 90%), hsl(0, 0%, 78%));
+
     }
+    
+    main {
+        position: relative;
+        padding-top: var(--nav-height-mobile);
+    }
+
     @media (min-width: 510px){
         main {
             padding-top: var(--navBarHeight);
-
         }
-    } */
-    main {
-        position: relative;
-        /* height: 100vh; */
-        padding-top: calc(2em + 1.5em);
     }
 </style>

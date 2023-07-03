@@ -67,6 +67,9 @@
 </div>
 
 <style>
+    .page {
+        animation: pageFade 1s forwards;
+    }
     .content {
         /* display: grid; */
         place-content: center;
@@ -85,7 +88,7 @@
         padding: .5em 0;
     }
     .content p {
-        
+        padding: 10px 0;
     }
     ul {
         padding: 1em 2em 1em;
@@ -97,6 +100,14 @@
     b {
         font-size: 1.1em;
         font-weight: bold;
+    }
+    @keyframes pageFade {
+        0% {
+            opacity: 0.1;
+        }
+        100% {
+            opacity: 1;
+        }
     }
     @media (min-width: 510px){
         .content {
