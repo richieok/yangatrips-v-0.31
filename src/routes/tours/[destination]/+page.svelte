@@ -48,6 +48,7 @@
         animation: pageFade 1s forwards;
     }
     .content {
+        display: grid;
         grid-template-columns: 1fr;
         padding: 10px;
         border-radius: 5px;
@@ -55,7 +56,7 @@
     }
     .img-display {
         overflow: hidden;
-        height: 300px;
+        height: clamp(300px, 100vw, 500px);
     }
     .img-display img {
         display: block;
@@ -64,7 +65,7 @@
         object-fit: cover;
     }
     .tour-details {
-        padding-top: 10px;
+        padding: 10px;
     }
     .tour-details h3 {
         text-align: center;
@@ -102,5 +103,20 @@
         100% {
             opacity: 1;
         }
+    }
+    @media (min-width: 810px){
+        .content {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .img-display {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .tour-details {
+            padding: 0 10px;
+            grid-column-start: 3;
+            grid-column-end: 4;
+        }
+
     }
 </style>
