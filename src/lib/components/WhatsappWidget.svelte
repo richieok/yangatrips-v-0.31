@@ -42,7 +42,8 @@
         width: 100%;
         height: 100%;
         border: none;
-        background-color: rgba(255, 255, 255, 0.891);
+        /* background-color: rgba(255, 255, 255, 0.891); */
+        background-color: green;
         border-radius: 50%;
         padding: 10px;
         box-shadow: 10px 15px 10px rgba(59, 57, 57, 0.569);
@@ -51,8 +52,8 @@
     svg {
         width: 100%;
         height: 100%;
-        fill: green;
-        stroke: green;
+        fill: rgba(255, 255, 255, 0.891);
+        stroke: rgba(255, 255, 255, 0.891);
         stroke-width: 10;
     }
     path,
