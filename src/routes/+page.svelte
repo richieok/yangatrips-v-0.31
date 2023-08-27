@@ -1,29 +1,46 @@
 <script>
     import MyCarousel from "$lib/components/MyCarousel.svelte";
     import TextOverlay from "$lib/components/TextOverlay.svelte";
+    export let data
 
-    let mobileImages = [
-        'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/mobile1-pexels-alex-azabache-3723038.jpg',
-        'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/mobile2-pexels-oleksandr-pidvalnyi-2070485.jpg',
-        'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/mobile3-pexels-nextvoyage-3780224.jpg'
-    ]
+    let mobileImages = []
+    let deskImages = []
 
-    let deskImages = [
-        'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/desktop2-pexels-addie-3152126+(1).jpg',
-        'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/desktop3-pexels-pixabay-2363.jpg',
-        'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/desktop4-pexels-sudipta-mondal-1603650.jpg'
-    ]
+    $:if (data?.d_signed_urls){
+        deskImages = data?.d_signed_urls
+        // console.log(data.d_signed_urls);
+    }
+    $: if (data?.m_signed_urls){
+        mobileImages = data.m_signed_urls
+        // console.log(data.m_signed_urls);
+    }
+
+    // let mobileImages = [
+    //     'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/mobile1-pexels-alex-azabache-3723038.jpg',
+    //     'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/mobile2-pexels-oleksandr-pidvalnyi-2070485.jpg',
+    //     'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/mobile3-pexels-nextvoyage-3780224.jpg'
+    // ]
+
+    // let deskImages = [
+    //     'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/desktop2-pexels-addie-3152126+(1).jpg',
+    //     'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/desktop3-pexels-pixabay-2363.jpg',
+    //     'https://s3.eu-west-3.amazonaws.com/yangatrips.com/images/desktop4-pexels-sudipta-mondal-1603650.jpg'
+    // ]
 </script>
 
 <div class="page">
     <div class="img-frame">
         <div class="narrow">
             <!-- <img src="{mobileImages[0]}" alt="doorway in marakesh"> -->
-            <MyCarousel images={mobileImages}/>
+            {#if mobileImages?.length}
+                <MyCarousel images={mobileImages}/>
+            {/if}
             <TextOverlay message="Travel… see the world broaden your mind"/>
         </div>
         <div class="wide">
-            <MyCarousel images={deskImages}/>
+            {#if deskImages?.length}
+                <MyCarousel images={deskImages}/>
+            {/if}
             <TextOverlay message="Travel… see the world broaden your mind"/>
             <!-- <img src="{deskImages[0]}" alt="taiwan fake trees"> -->
         </div>

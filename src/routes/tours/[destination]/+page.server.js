@@ -1,9 +1,11 @@
 import { error } from "@sveltejs/kit";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { access } from "$lib/s3access.js";
 
-const region = "eu-west-3"
-const accessKeyId = "AKIAYV7NLEXLZFHOGZ5N"
-const secretAccessKey = "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"
+let keys = await access.getAccessKeys()
+
+let bucketName = "yanga-trips-markup"
+const region = "us-east-1"
 
 export async function load( {params, fetch} ){
     let {destination} = params
@@ -28,16 +30,15 @@ async function getMarkup(name){
     const s3Client = new S3Client({
         region: region,
         credentials: {
-            accessKeyId: accessKeyId,
-            secretAccessKey: secretAccessKey
+            accessKeyId: keys.accessKeyId,
+            secretAccessKey: keys.secretAccessKey
         }
     })
     const command = new GetObjectCommand({
-        Bucket: 'yangatrips.com',
-        Key: `images/${name}/dest_desc.html`
+        Bucket: bucketName,
+        Key: `${name}/dest_desc.html`
     })
     const response = await s3Client.send(command)
-    // console.log(response)
     const content = await response.Body.transformToString()
     return content
 }

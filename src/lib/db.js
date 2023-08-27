@@ -1,6 +1,6 @@
 
 import { MongoClient } from 'mongodb';
-import { SSMClient, GetParametersCommand, GetParameterCommand } from "@aws-sdk/client-ssm";
+import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
 // import { env } from "$env/dynamic/private"
 import * as dotenv from 'dotenv'
 dotenv.config()
@@ -26,10 +26,10 @@ export const database = ( function () {
     return {
         getClient: () => {
             if (!client) {
-                console.log("Initializing DB");
+                // console.log("Initializing DB");
                 init()
             }
-            console.log('Initialized');
+            // console.log('Initialized');
             return client
         }
     }

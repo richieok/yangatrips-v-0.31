@@ -47,6 +47,7 @@
         border-radius: 50%;
         padding: 10px;
         box-shadow: 10px 15px 10px rgba(59, 57, 57, 0.569);
+        cursor: pointer;
     }
 
     svg {
